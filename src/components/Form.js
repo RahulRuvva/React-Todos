@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 
 
 
-const Form = ({setInputValue,inputValue, todos, setTodos, setStatus}) => {
+const Form = ({setInputValue,inputValue, todos, setTodos, setStatus, filteredTodos, setFilteredTodos}) => {
 
   const inputTextHandler = (e) => {
     setInputValue(e.target.value)
@@ -17,22 +17,26 @@ const submitTodoHandler = (e) => {
 
 }  
 
-const filterHandler = (e) => {
+const statusHandler = (e) => {
   setStatus(e.target.value)
+}
+
+/* const filterHandler = (e) => {
+  setFilteredTodos(e.target.value)
   if(e.target.value === 'all'){
-    setTodos(todos)
+    setFilteredTodos(todos)
   }
   if(e.target.value === 'completed')
   {
-    setTodos(todos.filter((eachTodo) => eachTodo.completed === true))
+    setFilteredTodos(todos.filter((eachTodo) => eachTodo.completed === true))
   }
   if(e.target.value === 'uncompleted')
   {
-    setTodos(todos.filter((eachTodo) => eachTodo.completed === false ))
+    setFilteredTodos(todos.filter((eachTodo) => eachTodo.completed === false ))
   }
 }
 
-  
+ */  
   return (
     <div>
         <form>
@@ -40,8 +44,8 @@ const filterHandler = (e) => {
             <button onClick={submitTodoHandler} class="todo-button" type="submit">
                 <i class="fas fa-plus-square"></i>
             </button>
-            <div class="select">
-                <select onClick={filterHandler}  name="todos" class="filter-todo">
+            <div onClick={statusHandler} class="select">
+                <select  name="todos" class="filter-todo">
                 <option value="all">All</option>
                 <option value="completed">Completed</option>
                 <option value="uncompleted">Uncompleted</option>
